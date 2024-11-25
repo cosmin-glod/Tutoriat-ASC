@@ -1,0 +1,35 @@
+// d flip flop
+
+const int S = D1;
+const int E = D2;
+const int led1 = D6;
+const int led2 = D7;
+
+bool currentState, prevState = false;
+
+void setup() 
+{
+  pinMode(S, INPUT_PULLUP);
+  pinMode(E, INPUT_PULLUP);
+
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  digitalWrite(led1, LOW);
+  digitalWrite(led2, LOW);
+}
+
+void loop() 
+{
+  currentState = (digitalRead(E) == 0);
+  if (!prevState && currentState) {
+    if (digitalRead(S) == 0) {
+      digitalWrite(led1, HIGH);
+      digitalWrite(led2, LOW);
+    }
+    else {
+      digitalWrite(led1, LOW);
+      digitalWrite(led2, HIGH);
+    }
+  }
+  prevState = currentState;
+}

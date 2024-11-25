@@ -1,0 +1,33 @@
+// sr latch
+
+const int button1 = D1;
+const int button2 = D2;
+const int led1 = D6;
+const int led2 = D7;
+
+void setup() 
+{
+  pinMode(button1, INPUT_PULLUP);
+  pinMode(button2, INPUT_PULLUP);
+
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  digitalWrite(led1, LOW);
+  digitalWrite(led2, LOW);
+}
+
+void loop() 
+{
+  if (digitalRead(button1) == 0 && digitalRead(button2) == 0) {
+    digitalWrite(led1, LOW);
+    digitalWrite(led2, LOW);
+  }
+  else if (digitalRead(button1) == 0) {
+    digitalWrite(led1, HIGH);
+    digitalWrite(led2, LOW);
+  }
+  else if (digitalRead(button2) == 0) {
+    digitalWrite(led2, HIGH);
+    digitalWrite(led1, LOW);
+  }
+}
